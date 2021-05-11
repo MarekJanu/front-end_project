@@ -12,7 +12,7 @@ When you fork a repo from northcoders it will be private and as this project wil
 
 ### Create a public repo
 
-1. Use `create-react-app` to start a new React project locally on your machine. This will create a new react app with git already initialized.
+1. **Do not** clone this repo. You will create a new repo to use later on. Instead navigate to the directory you keep normally keep your sprints and use `create-react-app` to start a new React project locally on your machine. This will create a new react app with git already initialized.
 
 ```bash
 $ npx create-react-app nc-news --use-npm
@@ -28,10 +28,11 @@ $ cd nc-news
 $ git remote add origin https://github.com/your-username/nc-news.git
 ```
 
-6. Push the initial React app
+6. Push the initial React app. **Note** create-react-app will initialise the git repo on a branch called `master`. As we use `main` for the default branch you should first change to that branch before pushing
 
 ```bash
-$ git push origin master
+$ git checkout -b main
+$ git push origin main
 ```
 
 ### Enable CORS on the Back End
