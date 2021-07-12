@@ -28,6 +28,11 @@ $ cd nc-news
 $ git remote add origin https://github.com/your-username/nc-news.git
 ```
 
+*nb* If you make a mistake here you can change the url of an existing remote with:
+```bash
+$ git remote set-url origin https://github.com/your-username/nc-news.git
+```
+
 6. Push the initial React app. **Note** create-react-app will initialise the git repo on a branch called `master`. As we use `main` for the default branch you should first change to that branch before pushing
 
 ```bash
