@@ -65,7 +65,7 @@ app.use(cors());
 10. Once you have made these changes you will need to commit them and re-deploy your api. With heroku this can be done by pushing to your heroku remote.
 
 ```sh
-$ git add app.js
+$ git add package.json package-lock.json app.js
 $ git commit -m 'allow cross origin resource sharing'
 $ git push heroku main
 ```
