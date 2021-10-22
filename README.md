@@ -105,25 +105,25 @@ You should implement the following functionality in your website. Check the lect
    - date created
    - comment_count
    - votes
+8. delete my own comments (as a default logged in user. e.g. 'jessjelly').
 
 **Error-handling: As a user, I should...**
 
-8. see an appropriate error if I go on a non-existent path / a path for a non-existent article / topic.
-9. not be allowed to post a comment if I have not filled in all of the form boxes.
+9. see an appropriate error if I go on a non-existent path / a path for a non-existent article / topic.
+10. not be allowed to post a comment if I have not filled in all of the form boxes.
 
 **As a hiring partner, I should be able to...**
 
-10. use the site on my mobile without sacrificing style or functionality (as I may not have my laptop nearby).
-11. follow the readme instructions to easily run the project locally.
-12. find a link to the hosted version of the project in the readme. (use a placeholder if not yet hosted!)
-13. find a link to the back-end repository of the project in the readme.
-14. find a link to the hosted version of the back-end project in the readme.
+11. use the site on my mobile without sacrificing style or functionality (as I may not have my laptop nearby).
+12. follow the readme instructions to easily run the project locally.
+13. find a link to the hosted version of the project in the readme. (use a placeholder if not yet hosted!)
+14. find a link to the back-end repository of the project in the readme.
+15. find a link to the hosted version of the back-end project in the readme.
 
 ## _If time, and if you have implemented it in your back-end API..._
 
 **As a user, I should be able to...**
 
-15. delete my own comments (as a default logged in user. e.g. 'jessjelly').
 16. vote on a comment and immediately see the change.
 17. navigate over pages of articles (e.g. using pagination or infinite scroll).
 18. navigate over pages of comments (e.g. using pagination or infinite scroll).
