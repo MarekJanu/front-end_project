@@ -12,7 +12,7 @@ When you fork a repo from northcoders it will be private and as this project wil
 
 ### Create a public repo
 
-1. **Do not** clone this repo. You will create a new repo to use later on. Instead navigate to the directory you keep normally keep your sprints and use `create-react-app` to start a new React project locally on your machine. This will create a new react app with git already initialized.
+1. **Do not** clone this repo. You will create a new repo to use later on. Instead navigate to the directory you normally keep your sprints in and use `create-react-app` to start a new React project locally on your machine. This will create a new react app with git already initialized.
 
 ```bash
 $ npx create-react-app nc-news --use-npm
