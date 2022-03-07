@@ -26,7 +26,7 @@ git checkout -b <new branch name>
 
 This will create a branch and move over to that branch. (Omit the `-b` flag if you wish to switch to an already existing branch).
 
-We recommend that you name the branch the number assigned to each ticket. eg. `ncnews-4`
+We recommend that you name the branch the number something that clarley shows the ticket you are working on. eg. `fe-ncnews-display-articles`
 
 When pushing the branch to git hub ensure that you make reference to the branch you are pushing to on the remote.
 
@@ -34,7 +34,7 @@ When pushing the branch to git hub ensure that you make reference to the branch 
 git push origin <branch name>
 ```
 
-From github you can make a pull request and share the link and ticket number on your `nchelp`. A tutor will swing by to review your code. Ensure that you keep your trello up to date whilst you await the PR approval.
+From github you can make a pull request and share the link and ticket number on your `nchelp` with a zoom link for you to demo your feature. A tutor will swing by to review your code. Ensure that you keep your trello up to date whilst you await the PR approval.
 
 Once a pull request been accepted be sure to switch back to the main branch and pull down the updated changes.
 
