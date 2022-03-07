@@ -26,7 +26,7 @@ git checkout -b <new branch name>
 
 This will create a branch and move over to that branch. (Omit the `-b` flag if you wish to switch to an already existing branch).
 
-We recommend that you name the branch the number something that clarley shows the ticket you are working on. eg. `fe-ncnews-display-articles`
+We recommend that you name the branch something that clearley shows the ticket you are working on. eg. `fe-ncnews-display-articles`
 
 When pushing the branch to git hub ensure that you make reference to the branch you are pushing to on the remote.
 
