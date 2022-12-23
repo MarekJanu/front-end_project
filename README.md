@@ -14,6 +14,11 @@ To keep track of the tasks involved in this project we're going to use a kanban 
 
 **We suggest you work through the tickets from top to bottom.**
 
+## Available Functionality
+
+You will only be able to complete front end tickets that have the associated behaviour implemented in your back end application. For example, you will be unable to complete front end _ticket 10: Sort articles_ if you haven't completed back end _ticket 10: GET /api/articles (queries)_.
+We suggest that you complete _all_ the core task tickets on your front end trello that you are able to at this stage. Once you have done this, you are welcome to return to your back end project one ticket at a time to allow you to continue with front end tickets.
+
 ## Git Branching and Pull Requests
 
 You will be working on each ticket on a new **branch**.
@@ -49,7 +54,7 @@ You can tidy up your local branches once they have been pull into main by deleti
 ```
 git branch -D <local branch>
 ```
-  
+
 ## Important
 
 This sprint is among the ones we'll ask you to complete in order to put you forward for jobs. Put a little bit of love into it! :) <3
