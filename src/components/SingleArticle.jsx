@@ -30,11 +30,11 @@ export const SingleArticle = () => {
   } else {
     return (
       <>
-        <img src={articleImg} />
-        <p>{articleTitle}</p>
+        <h1>{articleTitle}</h1>
         <p>
           By {articleAuthor}, publishing date: {articleDate.slice(0, 10)}
         </p>
+        <img className="imgArt" src={articleImg} />
         <p>Votes: {articleVotes}</p>
         <p>{articleBody}</p>
         <Comments id={id} />
