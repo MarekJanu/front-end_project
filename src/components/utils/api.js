@@ -13,3 +13,7 @@ export const getArticles = (topicName) => {
 export const getArticleById = (id) => {
   return articlesAPI.get(id).then(({ data }) => data);
 };
+
+export const getCommentsByArticleId = (id) => {
+  return articlesAPI.get(id).then(({ data }) => data);
+};
