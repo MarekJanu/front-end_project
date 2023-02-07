@@ -1,13 +1,14 @@
+import { Link } from "react-router-dom";
 import "../App.css";
 export const Nav = () => {
   return (
     <section className="navbar">
-      <a className="active" href="/">
+      <Link to="/" className="active">
         Home
-      </a>
-      <a href="/topics/coding">coding</a>
-      <a href="/topics/football">football</a>
-      <a href="/topics/cooking">cooking</a>
+      </Link>
+      <Link to="/topics/coding">coding</Link>
+      <Link to="/topics/football">football</Link>
+      <Link to="/topics/cooking">cooking</Link>
     </section>
   );
 };

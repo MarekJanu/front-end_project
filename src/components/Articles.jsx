@@ -22,11 +22,11 @@ export const Articles = () => {
         {articles.map((article) => {
           return (
             <div className="divDisplay" key={article.article_id}>
-              <img className="imgIMG" src={article.article_img_url} />
-              <h3>{article.title}</h3>
               <Link to={"articles" + article.article_id}>
-                <p>by {article.author}</p>
+                <img className="imgIMG" src={article.article_img_url} />
+                <h3>{article.title}</h3>
               </Link>
+              <p>by {article.author}</p>
             </div>
           );
         })}
