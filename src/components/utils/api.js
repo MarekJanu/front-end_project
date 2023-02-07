@@ -17,3 +17,5 @@ export const getArticleById = (id) => {
 export const getCommentsByArticleId = (id) => {
   return articlesAPI.get(id).then(({ data }) => data);
 };
+
+export const handleVote = ({ articleVotes, setVotes }) => {};

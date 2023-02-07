@@ -5,6 +5,7 @@
 .navbar {
   background-color: #333;
   overflow: hidden;
+  margin-bottom: 5px;
 }
 .navbar a {
   float: left;
@@ -38,13 +39,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 20%;
-  padding: 10px;
+  width: 23%;
+  padding: 4px;
 }
 @media screen and (max-width: 800px) {
   .divDisplay {
     flex: 50%;
-    max-width: 40%;
+    max-width: 48%;
   }
 }
 @media screen and (max-width: 600px) {
@@ -58,6 +59,7 @@
   height: auto;
   padding: 3px;
   box-shadow: 0px 0px 15px 0px grey;
+  margin-left: 1%;
 }
 .articleDiv {
   display: flex;
@@ -66,13 +68,13 @@
 h1 {
   color: #111;
   font-family: "Helvetica Neue", sans-serif;
-  font-size: 28pt;
+  font-size: 26pt;
   font-weight: bold;
-  letter-spacing: -1px;
+  letter-spacing: 0px;
   line-height: 1;
   text-align: left;
 }
-/* h1 {
+h2 {
   color: #d54d7b;
   font-family: "Great Vibes", cursive;
   font-size: 28pt;
@@ -82,14 +84,35 @@ h1 {
   margin-top: 4px;
   text-align: left;
   text-shadow: 0 1px 1px #fff;
-} */
+  margin-left: 0.75%;
+}
 
-p {
+.pSpec {
   color: #685206;
   font-family: "Helvetica Neue", sans-serif;
   font-size: 14px;
   line-height: 24px;
-  margin: 0 0 24px;
+  margin: 0 1% 24px;
+  max-width: 85%;
   text-align: justify;
   text-justify: inter-word;
+}
+
+p {
+  color: #111;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+  margin: 0 1% 8px;
+  text-align: justify;
+  max-width: 97%;
+}
+
+.comDiv {
+  box-shadow: 0px 0px 2px 0px grey;
+  margin: 0 1% 2px;
+}
+
+.spanVotes {
+  float: right;
 }

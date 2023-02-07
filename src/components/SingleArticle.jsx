@@ -10,11 +10,10 @@ export const SingleArticle = () => {
   const [articleImg, setImg] = useState("");
   const [articleDate, setDate] = useState("");
   const [articleVotes, setVotes] = useState(0);
-
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-
   const path = "articles/" + id;
+
   useEffect(() => {
     getArticleById(path).then(({ article }) => {
       setArticleTitle(article.title);
@@ -22,6 +21,7 @@ export const SingleArticle = () => {
       setImg(article.article_img_url);
       setAuthor(article.author);
       setDate(article.created_at);
+      setVotes(article.votes);
       setIsLoading(false);
     });
   }, [articleTitle]);
@@ -30,12 +30,19 @@ export const SingleArticle = () => {
   } else {
     return (
       <>
-        <h1>{articleTitle}</h1>
+        <h2>{articleTitle}</h2>
         <p>
           By {articleAuthor}, publishing date: {articleDate.slice(0, 10)}
         </p>
         <img className="imgArt" src={articleImg} />
-        <p>Votes: {articleVotes}</p>
+
+        <p>
+          Votes: {articleVotes}&nbsp;&nbsp;
+          <button>🔺</button>
+          &nbsp;&nbsp;
+          <button>🔻</button>
+        </p>
+
         <p>{articleBody}</p>
         <Comments id={id} />
       </>
