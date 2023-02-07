@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getArticleById } from "./utils/api";
+import { Comments } from "./Comments";
 
 export const SingleArticle = () => {
   const [articleTitle, setArticleTitle] = useState("");
@@ -36,6 +37,7 @@ export const SingleArticle = () => {
         </p>
         <p>Votes: {articleVotes}</p>
         <p>{articleBody}</p>
+        <Comments id={id} />
       </>
     );
   }
