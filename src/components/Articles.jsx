@@ -7,6 +7,7 @@ export const Articles = () => {
   const [articles, setArticles] = useState([]);
   const { topic } = useParams();
   const [isLoading, setIsLoading] = useState(true);
+  const articlePath = "/articles/";
 
   useEffect(() => {
     getArticles(topic).then((data) => {
@@ -22,7 +23,7 @@ export const Articles = () => {
         {articles.map((article) => {
           return (
             <div className="divDisplay" key={article.article_id}>
-              <Link to={"/articles/" + article.article_id}>
+              <Link to={articlePath + article.article_id}>
                 <img className="imgIMG" src={article.article_img_url} />
                 <h3>{article.title}</h3>
               </Link>
