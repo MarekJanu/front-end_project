@@ -9,3 +9,7 @@ export const getArticles = (topicName) => {
     .get("/articles", { params: { topic: topicName } })
     .then(({ data }) => data);
 };
+
+export const getArticleById = (id) => {
+  return articlesAPI.get(id).then(({ data }) => data);
+};
