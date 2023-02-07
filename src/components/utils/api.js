@@ -4,6 +4,8 @@ const articlesAPI = axios.create({
   baseURL: "https://testncnews.onrender.com/api/",
 });
 
-export const getArticles = () => {
-  return articlesAPI.get("/articles").then(({ data }) => console.log(data));
+export const getArticles = (topicName) => {
+  return articlesAPI
+    .get("/articles", { params: { topic: topicName } })
+    .then(({ data }) => data);
 };
