@@ -17,3 +17,9 @@ export const getArticleById = (id) => {
 export const getCommentsByArticleId = (id) => {
   return articlesAPI.get(id).then(({ data }) => data);
 };
+
+export const patchVote = (path, vote) => {
+  return articlesAPI
+    .patch(path, { inc_votes: vote })
+    .catch((err) => console.log(err));
+};

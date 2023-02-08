@@ -23,11 +23,24 @@ export const Articles = () => {
         {articles.map((article) => {
           return (
             <div className="divDisplay" key={article.article_id}>
-              <Link to={articlePath + article.article_id}>
+              <Link
+                to={articlePath + article.article_id}
+                className="frontPgTitle"
+              >
                 <img className="imgIMG" src={article.article_img_url} />
                 <h3>{article.title}</h3>
+                <span className="spanVotes">
+                  comments {article.comment_count}&nbsp;votes {article.votes}
+                </span>
               </Link>
-              <p>by {article.author}</p>
+              <p>
+                {/* user/author avatar placeholder  */}
+                <img
+                  src="https://www.vhv.rs/dpng/d/42-427985_icon-transparent-avatar-png-png-download.png"
+                  className="imgAvatarPg"
+                />
+                &nbsp; {article.author}
+              </p>
             </div>
           );
         })}
