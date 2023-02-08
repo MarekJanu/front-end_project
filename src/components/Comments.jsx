@@ -19,7 +19,6 @@ export const Comments = ({ id }) => {
     return (
       <div>
         <h4>&nbsp;&nbsp;&nbsp;Comments</h4>
-        {/* <ul> */}
         {articleComments.map((comment) => {
           return (
             <div
@@ -35,7 +34,6 @@ export const Comments = ({ id }) => {
             </div>
           );
         })}
-        {/* </ul> */}
       </div>
     );
   }

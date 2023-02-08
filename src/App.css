@@ -115,4 +115,17 @@ p {
 
 .spanVotes {
   float: right;
+  font-size: 0.8rem;
+  text-align: right;
+}
+.frontPgTitle {
+  text-decoration: none;
+  text-align: left;
+  font-family: "Great Vibes", cursive;
+  font-size: 0.9em;
+  color: #111;
+}
+
+.imgAvatarPg {
+  max-width: 15%;
 }
