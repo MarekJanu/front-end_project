@@ -18,4 +18,8 @@ export const getCommentsByArticleId = (id) => {
   return articlesAPI.get(id).then(({ data }) => data);
 };
 
-export const handleVote = ({ articleVotes, setVotes }) => {};
+export const patchVote = (path, vote) => {
+  return articlesAPI
+    .patch(path, { inc_votes: vote })
+    .catch((err) => console.log(err));
+};

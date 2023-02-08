@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getArticleById } from "./utils/api";
+import { getArticleById, patchVote } from "./utils/api";
 import { Comments } from "./Comments";
 
 export const SingleArticle = () => {
@@ -13,6 +13,18 @@ export const SingleArticle = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const path = "articles/" + id;
+
+  const upVote = (e) => {
+    e.preventDefault();
+    setVotes((prevVotes) => prevVotes + 1);
+    patchVote(path, 1);
+  };
+
+  const dnVote = (e) => {
+    e.preventDefault();
+    setVotes((prevVotes) => prevVotes - 1);
+    patchVote(path, -1);
+  };
 
   useEffect(() => {
     getArticleById(path).then(({ article }) => {
@@ -37,10 +49,9 @@ export const SingleArticle = () => {
         <img className="imgArt" src={articleImg} />
 
         <p>
-          Votes: {articleVotes}&nbsp;&nbsp;
-          <button>🔺</button>
-          &nbsp;&nbsp;
-          <button>🔻</button>
+          <button onClick={upVote}>🔺</button>
+          &nbsp;&nbsp;Votes: {articleVotes}&nbsp;&nbsp;
+          <button onClick={dnVote}>🔻</button>
         </p>
 
         <p>{articleBody}</p>
