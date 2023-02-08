@@ -19,7 +19,17 @@ export const getCommentsByArticleId = (id) => {
 };
 
 export const patchVote = (path, vote) => {
-  return articlesAPI
-    .patch(path, { inc_votes: vote })
-    .catch((err) => console.log(err));
+  return articlesAPI.patch(path, { inc_votes: vote });
+};
+
+export const errorTimeout = ({
+  setDoubleClickUp,
+  setDoubleClickDn,
+  setError,
+}) => {
+  setTimeout(() => {
+    setDoubleClickUp(false);
+    setDoubleClickDn(false);
+    setError(null);
+  }, 2000);
 };
