@@ -33,3 +33,46 @@ export const errorTimeout = ({
     setError(null);
   }, 2000);
 };
+
+export const changeVote = (
+  e,
+  path,
+  setVotes,
+  setPreviousClick,
+  previousClick,
+  setDoubleClickUp,
+  setDoubleClickDn,
+  setError
+) => {
+  e.preventDefault();
+  const {
+    target: { value },
+  } = e;
+  setVotes((prevVotes) => prevVotes + +value);
+  setPreviousClick((prePre) => +prePre + +value);
+  if (value > 0 && previousClick === 0) {
+    (() => {
+      setDoubleClickUp(true);
+      setDoubleClickDn(false);
+    })();
+  }
+  if (value > 0 && previousClick === -1) {
+    (() => {
+      setDoubleClickUp(false);
+      setDoubleClickDn(false);
+    })();
+  }
+  if (value < 0 && previousClick === 0) {
+    (() => {
+      setDoubleClickUp(false);
+      setDoubleClickDn(true);
+    })();
+  }
+  if (value < 0 && previousClick === 1) {
+    (() => {
+      setDoubleClickUp(false);
+      setDoubleClickDn(false);
+    })();
+  }
+  patchVote(path, value).catch(({ message: err }) => setError(err));
+};

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById, patchVote, errorTimeout } from "./utils/api";
+import { getArticleById, errorTimeout, changeVote } from "./utils/api";
 import { Comments } from "./Comments";
 
 export const SingleArticle = () => {
@@ -17,40 +17,6 @@ export const SingleArticle = () => {
   const [error, setError] = useState(null);
   const { id } = useParams();
   const path = "articles/" + id;
-
-  const changeVote = (e) => {
-    e.preventDefault();
-    const {
-      target: { value },
-    } = e;
-    setVotes((prevVotes) => prevVotes + +value);
-    setPreviousClick((prePre) => +prePre + +value);
-    if (value > 0 && previousClick === 0) {
-      (() => {
-        setDoubleClickUp(true);
-        setDoubleClickDn(false);
-      })();
-    }
-    if (value > 0 && previousClick === -1) {
-      (() => {
-        setDoubleClickUp(false);
-        setDoubleClickDn(false);
-      })();
-    }
-    if (value < 0 && previousClick === 0) {
-      (() => {
-        setDoubleClickUp(false);
-        setDoubleClickDn(true);
-      })();
-    }
-    if (value < 0 && previousClick === 1) {
-      (() => {
-        setDoubleClickUp(false);
-        setDoubleClickDn(false);
-      })();
-    }
-    patchVote(path, value).catch(({ message: err }) => setError(err));
-  };
 
   useEffect(() => {
     getArticleById(path).then(({ article }) => {
@@ -79,11 +45,41 @@ export const SingleArticle = () => {
         <img className="imgArt" src={articleImg} />
 
         <p>
-          <button disabled={doubleClickUp} value={1} onClick={changeVote}>
+          <button
+            disabled={doubleClickUp}
+            value={1}
+            onClick={(e) =>
+              changeVote(
+                e,
+                path,
+                setVotes,
+                setPreviousClick,
+                previousClick,
+                setDoubleClickUp,
+                setDoubleClickDn,
+                setError
+              )
+            }
+          >
             🔺
           </button>
           &nbsp;&nbsp;Votes: {articleVotes}&nbsp;&nbsp;
-          <button disabled={doubleClickDn} value={-1} onClick={changeVote}>
+          <button
+            disabled={doubleClickDn}
+            value={-1}
+            onClick={(e) =>
+              changeVote(
+                e,
+                path,
+                setVotes,
+                setPreviousClick,
+                previousClick,
+                setDoubleClickUp,
+                setDoubleClickDn,
+                setError
+              )
+            }
+          >
             🔻
           </button>
         </p>
