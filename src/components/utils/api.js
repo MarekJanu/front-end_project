@@ -76,3 +76,28 @@ export const changeVote = (
   }
   patchVote(path, value).catch(({ message: err }) => setError(err));
 };
+
+export const handleSubmit = (
+  e,
+  commentBody,
+  userName,
+  path,
+  setArticleComments
+) => {
+  e.preventDefault();
+  if (commentBody.length > 3) {
+    const date = new Date();
+    let userComment = {
+      author: userName,
+      created_at: date.toString(),
+      votes: 0,
+      body: commentBody,
+    };
+    setArticleComments((currentComments) => [userComment, ...currentComments]);
+
+    articlesAPI
+      .post(path, { username: userName, body: commentBody })
+      .then(({ data: { comment } }) => "")
+      .catch((message) => console.log(message));
+  }
+};
