@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { getCommentsByArticleId } from "./utils/api";
+import { PostComment } from "./PostComment";
 import "../App.css";
 
 export const Comments = ({ id }) => {
-  const [articleComments, setarticleComments] = useState([]);
+  const [articleComments, setArticleComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const commentsPath = `/articles/${id}/comments`;
 
   useEffect(() => {
     const comArr = getCommentsByArticleId(commentsPath).then(({ comments }) => {
-      setarticleComments(comments);
+      setArticleComments(comments);
       setIsLoading(false);
     });
   }, [id]);
@@ -19,6 +20,7 @@ export const Comments = ({ id }) => {
     return (
       <div>
         <h4>&nbsp;&nbsp;&nbsp;Comments</h4>
+        <PostComment id={id} setArticleComments={setArticleComments} />
         {articleComments.map((comment) => {
           return (
             <div

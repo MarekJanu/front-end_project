@@ -15,6 +15,7 @@ export const Articles = () => {
       setIsLoading(false);
     });
   }, [topic]);
+
   if (isLoading) {
     return <p>Loading...</p>;
   } else {

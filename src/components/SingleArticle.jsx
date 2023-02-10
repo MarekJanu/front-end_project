@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getArticleById, patchVote } from "./utils/api";
 import { Comments } from "./Comments";
 
@@ -10,21 +10,13 @@ export const SingleArticle = () => {
   const [articleImg, setImg] = useState("");
   const [articleDate, setDate] = useState("");
   const [articleVotes, setVotes] = useState(0);
-  const { id } = useParams();
+  const [previousClick, setPreviousClick] = useState(0);
+  const [doubleClickUp, setDoubleClickUp] = useState(false);
+  const [doubleClickDn, setDoubleClickDn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { id } = useParams();
   const path = "articles/" + id;
-
-  const upVote = (e) => {
-    e.preventDefault();
-    setVotes((prevVotes) => prevVotes + 1);
-    patchVote(path, 1);
-  };
-
-  const dnVote = (e) => {
-    e.preventDefault();
-    setVotes((prevVotes) => prevVotes - 1);
-    patchVote(path, -1);
-  };
 
   useEffect(() => {
     getArticleById(path).then(({ article }) => {
@@ -36,7 +28,50 @@ export const SingleArticle = () => {
       setVotes(article.votes);
       setIsLoading(false);
     });
-  }, [articleTitle]);
+  }, [articleTitle, error]);
+
+  const changeVote = (e) => {
+    e.preventDefault();
+    const {
+      target: { value },
+    } = e;
+    setVotes((prevVotes) => prevVotes + +value);
+    setPreviousClick((prePre) => +prePre + +value);
+    if (value > 0 && previousClick === 0) {
+      (() => {
+        setDoubleClickUp(true);
+        setDoubleClickDn(false);
+      })();
+    }
+    if (value > 0 && previousClick === -1) {
+      (() => {
+        setDoubleClickUp(false);
+        setDoubleClickDn(false);
+      })();
+    }
+    if (value < 0 && previousClick === 0) {
+      (() => {
+        setDoubleClickUp(false);
+        setDoubleClickDn(true);
+      })();
+    }
+    if (value < 0 && previousClick === 1) {
+      (() => {
+        setDoubleClickUp(false);
+        setDoubleClickDn(false);
+      })();
+    }
+    patchVote(path, value).catch(({ message: err }) => setError(err));
+  };
+
+  if (error) {
+    setTimeout(() => {
+      setDoubleClickUp(false);
+      setDoubleClickDn(false);
+      setError(null);
+    }, 2000);
+    return <h2>Error while voting. Please try again.</h2>;
+  }
   if (isLoading) {
     return <p>Loading...</p>;
   } else {
@@ -49,9 +84,21 @@ export const SingleArticle = () => {
         <img className="imgArt" src={articleImg} />
 
         <p>
-          <button onClick={upVote}>🔺</button>
+          <button
+            disabled={doubleClickUp}
+            value={1}
+            onClick={(e) => changeVote(e)}
+          >
+            🔺
+          </button>
           &nbsp;&nbsp;Votes: {articleVotes}&nbsp;&nbsp;
-          <button onClick={dnVote}>🔻</button>
+          <button
+            disabled={doubleClickDn}
+            value={-1}
+            onClick={(e) => changeVote(e)}
+          >
+            🔻
+          </button>
         </p>
 
         <p>{articleBody}</p>

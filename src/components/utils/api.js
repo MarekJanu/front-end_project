@@ -19,7 +19,11 @@ export const getCommentsByArticleId = (id) => {
 };
 
 export const patchVote = (path, vote) => {
+  return articlesAPI.patch(path, { inc_votes: vote });
+};
+
+export const postComment = (path, userName, commentBody) => {
   return articlesAPI
-    .patch(path, { inc_votes: vote })
-    .catch((err) => console.log(err));
+    .post(path, { username: userName, body: commentBody })
+    .then(({ data: { comment } }) => "");
 };

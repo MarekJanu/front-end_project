@@ -24,6 +24,15 @@
   color: white;
 }
 
+.navbar span {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
 .imgIMG {
   max-width: 100%;
   height: auto;
@@ -70,7 +79,7 @@ h1 {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 26pt;
   font-weight: bold;
-  letter-spacing: 0px;
+  /letter-spacing: 0px;
   line-height: 1;
   text-align: left;
 }
@@ -112,6 +121,26 @@ p {
   box-shadow: 0px 0px 2px 0px grey;
   margin: 0 1% 2px;
 }
+.comDiv2 {
+  border: none;
+  box-shadow: 0px 0px 6px 0px grey;
+  margin: 0 1% 2px;
+}
+.divButton {
+  width: 75%;
+  margin-bottom: 4%;
+}
+
+textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: none;
+  box-shadow: 0px 0px 2px 0px #535252;
+  margin: 0 1% 2px;
+  height: 5rem;
+  width: 98%;
+}
 
 .spanVotes {
   float: right;
@@ -128,4 +157,67 @@ p {
 
 .imgAvatarPg {
   max-width: 15%;
+}
+
+.button-subCom {
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 0.9rem;
+  line-height: 23px;
+  outline: none;
+  padding: 0.3rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-bottom: 25px;
+  margin-left: 1%;
+}
+
+.button-subCom:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.button-subCom:focus {
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 4px -6px;
+}
+
+.navbar select {
+  float: right;
+  border: none;
+  background-color: #333;
+  text-align: center;
+  padding: 13px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #f2f2f2;
+
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+.navbar button {
+  float: right;
+  background-color: #333;
+  color: #f2f2f2;
+  text-align: center;
+  font-size: 200%;
 }
