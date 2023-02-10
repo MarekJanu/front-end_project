@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById, errorTimeout, changeVote } from "./utils/api";
+import { getArticleById, patchVote } from "./utils/api";
 import { Comments } from "./Comments";
-import { PostComment } from "./PostComment";
 
 export const SingleArticle = () => {
   const [articleTitle, setArticleTitle] = useState("");
@@ -30,8 +29,47 @@ export const SingleArticle = () => {
       setIsLoading(false);
     });
   }, [articleTitle, error]);
+
+  const changeVote = (e) => {
+    e.preventDefault();
+    const {
+      target: { value },
+    } = e;
+    setVotes((prevVotes) => prevVotes + +value);
+    setPreviousClick((prePre) => +prePre + +value);
+    if (value > 0 && previousClick === 0) {
+      (() => {
+        setDoubleClickUp(true);
+        setDoubleClickDn(false);
+      })();
+    }
+    if (value > 0 && previousClick === -1) {
+      (() => {
+        setDoubleClickUp(false);
+        setDoubleClickDn(false);
+      })();
+    }
+    if (value < 0 && previousClick === 0) {
+      (() => {
+        setDoubleClickUp(false);
+        setDoubleClickDn(true);
+      })();
+    }
+    if (value < 0 && previousClick === 1) {
+      (() => {
+        setDoubleClickUp(false);
+        setDoubleClickDn(false);
+      })();
+    }
+    patchVote(path, value).catch(({ message: err }) => setError(err));
+  };
+
   if (error) {
-    errorTimeout({ setDoubleClickUp, setDoubleClickDn, setError });
+    setTimeout(() => {
+      setDoubleClickUp(false);
+      setDoubleClickDn(false);
+      setError(null);
+    }, 2000);
     return <h2>Error while voting. Please try again.</h2>;
   }
   if (isLoading) {
@@ -49,18 +87,7 @@ export const SingleArticle = () => {
           <button
             disabled={doubleClickUp}
             value={1}
-            onClick={(e) =>
-              changeVote(
-                e,
-                path,
-                setVotes,
-                setPreviousClick,
-                previousClick,
-                setDoubleClickUp,
-                setDoubleClickDn,
-                setError
-              )
-            }
+            onClick={(e) => changeVote(e)}
           >
             🔺
           </button>
@@ -68,25 +95,13 @@ export const SingleArticle = () => {
           <button
             disabled={doubleClickDn}
             value={-1}
-            onClick={(e) =>
-              changeVote(
-                e,
-                path,
-                setVotes,
-                setPreviousClick,
-                previousClick,
-                setDoubleClickUp,
-                setDoubleClickDn,
-                setError
-              )
-            }
+            onClick={(e) => changeVote(e)}
           >
             🔻
           </button>
         </p>
 
         <p>{articleBody}</p>
-        {/* <PostComment id={id} /> */}
         <Comments id={id} />
       </>
     );

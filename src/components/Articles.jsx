@@ -7,7 +7,6 @@ export const Articles = () => {
   const [articles, setArticles] = useState([]);
   const { topic } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  //   const [err, setErr] = useState(null);
   const articlePath = "/articles/";
 
   useEffect(() => {
@@ -15,12 +14,8 @@ export const Articles = () => {
       setArticles(data);
       setIsLoading(false);
     });
-    //   .catch((err) => {
-    //     setErr({ err });
-    //   });
   }, [topic]);
-  //   if (err)
-  //     return <h2>Vote cancelled, there was an error kinda situation... </h2>;
+
   if (isLoading) {
     return <p>Loading...</p>;
   } else {
