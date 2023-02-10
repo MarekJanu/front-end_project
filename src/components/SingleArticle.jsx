@@ -19,16 +19,19 @@ export const SingleArticle = () => {
   const path = "articles/" + id;
 
   useEffect(() => {
-    getArticleById(path).then(({ article }) => {
-      setArticleTitle(article.title);
-      setBody(article.body);
-      setImg(article.article_img_url);
-      setAuthor(article.author);
-      setDate(article.created_at);
-      setVotes(article.votes);
-      setIsLoading(false);
-    });
-  }, [articleTitle, error]);
+    getArticleById(path)
+      .then(({ article }) => {
+        setArticleTitle(article.title);
+        setBody(article.body);
+        setImg(article.article_img_url);
+        setAuthor(article.author);
+        setDate(article.created_at);
+        setVotes(article.votes);
+        setIsLoading(false);
+        setError(null);
+      })
+      .catch((err) => setError("No article found, try something diffrent..."));
+  }, [articleTitle]);
 
   const changeVote = (e) => {
     e.preventDefault();
@@ -65,12 +68,7 @@ export const SingleArticle = () => {
   };
 
   if (error) {
-    setTimeout(() => {
-      setDoubleClickUp(false);
-      setDoubleClickDn(false);
-      setError(null);
-    }, 2000);
-    return <h2>Error while voting. Please try again.</h2>;
+    return <h2>{error}</h2>;
   }
   if (isLoading) {
     return <p>Loading...</p>;

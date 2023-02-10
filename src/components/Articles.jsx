@@ -1,4 +1,4 @@
-import { getArticles } from "./utils/api";
+import { getArticles, getUsers } from "./utils/api";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../App.css";
@@ -9,14 +9,24 @@ export const Articles = () => {
   const [sortValue, setSortValue] = useState("created_at");
   const [orderOfSort, setOrderOfSort] = useState("DESC");
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [users, setUsers] = useState([]);
   const articlePath = "/articles/";
 
   useEffect(() => {
-    getArticles(topic, sortValue, orderOfSort).then((data) => {
-      setArticles(data);
-      setIsLoading(false);
-    });
+    Promise.all([getArticles(topic, sortValue, orderOfSort), getUsers()])
+
+      .then(([articles, users]) => {
+        setArticles(articles);
+        setIsLoading(false);
+        setError(null);
+        setUsers(users);
+      })
+      .catch((err) => setError("No topic found, try something diffrent..."));
   }, [topic, sortValue, orderOfSort]);
+
+  let newObj = {};
+  users.forEach((user) => (newObj[user.username] = user.avatar_url));
 
   const handleSorting = ({ target: { value } }) => {
     setSortValue(value);
@@ -27,18 +37,21 @@ export const Articles = () => {
     if (orderOfSort === "ASC") setOrderOfSort("DESC");
   };
 
+  if (error) return <h2>{error}</h2>;
   if (isLoading) {
     return <p>Loading...</p>;
   } else {
     return (
       <>
-        <select onChange={(e) => handleSorting(e)}>
+        <select className="someSelect" onChange={(e) => handleSorting(e)}>
           <option disabled>sort by</option>
           <option value="created_at">date</option>
           <option value="votes">votes</option>
           <option value="comment_count">comments</option>
         </select>
-        <button onClick={(e) => handleOrder(e)}>↕</button>
+        <button className="randomButton" onClick={(e) => handleOrder(e)}>
+          ↕
+        </button>
         <section className="listDisplay">
           {articles.map((article) => {
             return (
@@ -54,11 +67,7 @@ export const Articles = () => {
                   </span>
                 </Link>
                 <p>
-                  {/* user/author avatar placeholder  */}
-                  <img
-                    src="https://www.vhv.rs/dpng/d/42-427985_icon-transparent-avatar-png-png-download.png"
-                    className="imgAvatarPg"
-                  />
+                  <img src={newObj[article.author]} className="imgAvatarPg" />
                   &nbsp; {article.author}
                 </p>
               </div>
