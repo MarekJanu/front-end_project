@@ -228,3 +228,7 @@ textarea {
   text-align: center;
   font-size: 200%;
 }
+.someclass {
+  font-weight: bolder;
+  color: red;
+}

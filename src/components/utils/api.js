@@ -29,3 +29,7 @@ export const postComment = (path, userName, commentBody) => {
     .post(path, { username: userName, body: commentBody })
     .then(({ data: { comment } }) => "");
 };
+
+export const deleteComment = (path, commId) => {
+  return articlesAPI.delete(path, { comment_id: commId }).then((data) => "");
+};

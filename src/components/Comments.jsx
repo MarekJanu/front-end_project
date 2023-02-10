@@ -1,26 +1,54 @@
 import { useState, useEffect } from "react";
-import { getCommentsByArticleId } from "./utils/api";
+import { getCommentsByArticleId, deleteComment } from "./utils/api";
 import { PostComment } from "./PostComment";
 import "../App.css";
 
 export const Comments = ({ id }) => {
   const [articleComments, setArticleComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const commentsPath = `/articles/${id}/comments`;
+  const [optionalMsg, setOptionalMsg] = useState("");
+  const [commentDelete, setCommentDelete] = useState("");
+  // const [commentAuthor, setCommentAuthor] = useState("");
+  const getCommPath = `/articles/${id}/comments`;
+  const userName = "cooljmessy";
 
   useEffect(() => {
-    const comArr = getCommentsByArticleId(commentsPath).then(({ comments }) => {
+    const comArr = getCommentsByArticleId(getCommPath).then(({ comments }) => {
       setArticleComments(comments);
       setIsLoading(false);
     });
   }, [id]);
+
+  const handleDelete = ({ target: { value: commId } }) => {
+    const delCommPath = `/comments/${commId}`;
+
+    const littleHelper = articleComments.filter(
+      (article) => article.author === userName && article.comment_id === +commId
+    );
+    let filteredComments = [commId];
+    if (littleHelper.length > 0) {
+      filteredComments = articleComments.filter(
+        (comment) => comment.comment_id !== +commId
+      );
+      setArticleComments(filteredComments);
+      setOptionalMsg("comment deleted");
+      deleteComment(delCommPath, commId).catch((err) =>
+        setOptionalMsg("something went wrong...")
+      );
+    }
+  };
   if (isLoading) {
     return <p>Comments are loading...</p>;
   } else {
     return (
       <div>
         <h4>&nbsp;&nbsp;&nbsp;Comments</h4>
-        <PostComment id={id} setArticleComments={setArticleComments} />
+        <PostComment
+          id={id}
+          setArticleComments={setArticleComments}
+          userName={userName}
+        />
+        <p className="someclass">{optionalMsg}</p>
         {articleComments.map((comment) => {
           return (
             <div key={comment.comment_id}>
@@ -32,7 +60,13 @@ export const Comments = ({ id }) => {
                 </p>
                 <p className="pSpec"> {comment.body}</p>
               </div>
-              <button className="button-subCom floatButton">delete me</button>
+              <button
+                className="button-subCom floatButton"
+                value={comment.comment_id}
+                onClick={handleDelete}
+              >
+                delete me
+              </button>
             </div>
           );
         })}

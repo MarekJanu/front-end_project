@@ -2,8 +2,7 @@ import { useState } from "react";
 import { postComment } from "./utils/api";
 import "../App.css";
 
-export const PostComment = ({ id, setArticleComments }) => {
-  const userName = "cooljmessy";
+export const PostComment = ({ id, setArticleComments, userName }) => {
   const [commentBody, setCommentBody] = useState("");
   const [error, setError] = useState("");
   const path = `/articles/${id}/comments`;
@@ -12,7 +11,9 @@ export const PostComment = ({ id, setArticleComments }) => {
     e.preventDefault();
     if (commentBody.length > 3) {
       const date = new Date();
+      const tempId = Math.random();
       let userComment = {
+        comment_id: tempId,
         author: userName,
         created_at: date.toString(),
         votes: 0,
@@ -23,9 +24,9 @@ export const PostComment = ({ id, setArticleComments }) => {
         userComment,
         ...currentComments,
       ]);
-      postComment(path, userName, commentBody).catch((err) => console.log(err));
+      postComment(path, userName, commentBody).catch((err) => setError(err));
     } else {
-      setError("Comment too short");
+      setError("You need to write at least 4 characters here.");
     }
   };
 
