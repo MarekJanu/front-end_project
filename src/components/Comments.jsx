@@ -7,8 +7,6 @@ export const Comments = ({ id }) => {
   const [articleComments, setArticleComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [optionalMsg, setOptionalMsg] = useState("");
-  const [commentDelete, setCommentDelete] = useState("");
-  // const [commentAuthor, setCommentAuthor] = useState("");
   const getCommPath = `/articles/${id}/comments`;
   const userName = "cooljmessy";
 
