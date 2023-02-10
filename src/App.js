@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Articles } from "./components/Articles";
 import { SingleArticle } from "./components/SingleArticle";
+import { ErrorPage } from "./components/ErrorPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Articles />}></Route>
         <Route path="/topics/:topic" element={<Articles />}></Route>
         <Route path="/articles/:id" element={<SingleArticle />}></Route>
+        <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
     </div>
   );

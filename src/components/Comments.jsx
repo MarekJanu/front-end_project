@@ -33,7 +33,9 @@ export const Comments = ({ id }) => {
       deleteComment(delCommPath, commId).catch((err) =>
         setOptionalMsg("something went wrong...")
       );
+    } else {
     }
+    setOptionalMsg("you can only delete your comment");
   };
   if (isLoading) {
     return <p>Comments are loading...</p>;
