@@ -23,16 +23,16 @@ export const Comments = ({ id }) => {
         <PostComment id={id} setArticleComments={setArticleComments} />
         {articleComments.map((comment) => {
           return (
-            <div
-              className="comDiv"
-              key={comment.comment_id + comment.created_at}
-            >
-              <p>
-                author: {comment.author}, date created:
-                {comment.created_at.slice(0, 10)}
-                <span className="spanVotes"> votes: {comment.votes}</span>
-              </p>
-              <p className="pSpec"> {comment.body}</p>
+            <div key={comment.comment_id}>
+              <div className="comDiv">
+                <p>
+                  author: {comment.author}, date created:
+                  {comment.created_at.slice(0, 10)}
+                  <span className="spanVotes"> votes: {comment.votes}</span>
+                </p>
+                <p className="pSpec"> {comment.body}</p>
+              </div>
+              <button className="button-subCom floatButton">delete me</button>
             </div>
           );
         })}

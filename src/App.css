@@ -101,7 +101,7 @@ h2 {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 14px;
   line-height: 24px;
-  margin: 0 1% 24px;
+  margin: 0 1% 2px;
   max-width: 85%;
   text-align: justify;
   text-justify: inter-word;
@@ -190,6 +190,13 @@ textarea {
   touch-action: manipulation;
   margin-bottom: 25px;
   margin-left: 1%;
+}
+.floatButton {
+  margin-left: 90%;
+  font-size: 10px;
+  margin: none;
+  padding: 1px;
+  margin-bottom: 14px;
 }
 
 .button-subCom:hover {
