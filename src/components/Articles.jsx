@@ -2,7 +2,6 @@ import { getArticles } from "./utils/api";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../App.css";
-import { TestComponent } from "./TestComponent";
 
 export const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -17,10 +16,15 @@ export const Articles = () => {
       setArticles(data);
       setIsLoading(false);
     });
-  }, [topic]);
-  const handleSorting = (e) => {
-    e.preventDefault();
-    setSortValue();
+  }, [topic, sortValue, orderOfSort]);
+
+  const handleSorting = ({ target: { value } }) => {
+    setSortValue(value);
+  };
+
+  const handleOrder = () => {
+    if (orderOfSort === "DESC") setOrderOfSort("ASC");
+    if (orderOfSort === "ASC") setOrderOfSort("DESC");
   };
 
   if (isLoading) {
@@ -28,13 +32,13 @@ export const Articles = () => {
   } else {
     return (
       <>
-        <select onChange={(e) => console.log(e.target.value)}>
+        <select onChange={(e) => handleSorting(e)}>
           <option disabled>sort by</option>
           <option value="created_at">date</option>
           <option value="votes">votes</option>
-          <option value="comments">comments</option>
+          <option value="comment_count">comments</option>
         </select>
-        <button onClick={() => console.log("click")}>↕</button>
+        <button onClick={(e) => handleOrder(e)}>↕</button>
         <section className="listDisplay">
           {articles.map((article) => {
             return (
