@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById, patchVote } from "./utils/api";
 import { Comments } from "./Comments";
+import { Loading } from "./Loading";
 
 export const SingleArticle = () => {
   const [articleTitle, setArticleTitle] = useState("");
@@ -71,7 +72,7 @@ export const SingleArticle = () => {
     return <h2>{error}</h2>;
   }
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   } else {
     return (
       <>

@@ -6,6 +6,7 @@ export const PostComment = ({ id, setArticleComments, userName }) => {
   const [commentBody, setCommentBody] = useState("");
   const [error, setError] = useState("");
   const path = `/articles/${id}/comments`;
+  const [switchOnOff, setSwitchOnOff] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,6 +21,8 @@ export const PostComment = ({ id, setArticleComments, userName }) => {
         body: commentBody,
       };
       setError("");
+      setSwitchOnOff(true);
+      setError("Thank you for comment, it will appear soon.");
       setArticleComments((currentComments) => [
         userComment,
         ...currentComments,
@@ -33,16 +36,16 @@ export const PostComment = ({ id, setArticleComments, userName }) => {
   return (
     <>
       <div>
-        <p>{error}</p>
         <form onSubmit={handleSubmit}>
           <textarea
             onChange={({ target: { value } }) => setCommentBody(value)}
             placeholder="Enter your comment here"
           ></textarea>
-          <button disabled={false} className="button-subCom ">
+          <button disabled={switchOnOff} className="button-subCom ">
             submit
           </button>
         </form>
+        <p className="pSpec">{error}</p>
       </div>
     </>
   );

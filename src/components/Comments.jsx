@@ -11,7 +11,7 @@ export const Comments = ({ id }) => {
   const userName = "cooljmessy";
 
   useEffect(() => {
-    const comArr = getCommentsByArticleId(getCommPath).then(({ comments }) => {
+    getCommentsByArticleId(getCommPath).then(({ comments }) => {
       setArticleComments(comments);
       setIsLoading(false);
     });
@@ -19,13 +19,17 @@ export const Comments = ({ id }) => {
 
   const handleDelete = ({ target: { value: commId } }) => {
     const delCommPath = `/comments/${commId}`;
+    let tempControl = false;
 
     const littleHelper = articleComments.filter(
-      (article) => article.author === userName && article.comment_id === +commId
+      (comment) => comment.comment_id === +commId
     );
-    let filteredComments = [commId];
-    if (littleHelper.length > 0) {
-      filteredComments = articleComments.filter(
+    littleHelper[0].author === userName
+      ? (tempControl = true)
+      : (tempControl = false);
+
+    if (tempControl) {
+      const filteredComments = articleComments.filter(
         (comment) => comment.comment_id !== +commId
       );
       setArticleComments(filteredComments);
@@ -34,8 +38,8 @@ export const Comments = ({ id }) => {
         setOptionalMsg("something went wrong...")
       );
     } else {
+      setOptionalMsg("you can only delete your comment");
     }
-    setOptionalMsg("you can only delete your comment");
   };
   if (isLoading) {
     return <p>Comments are loading...</p>;
@@ -53,9 +57,10 @@ export const Comments = ({ id }) => {
           return (
             <div key={comment.comment_id}>
               <div className="comDiv">
-                <p>
-                  author: {comment.author}, date created:
-                  {comment.created_at.slice(0, 10)}
+                <p className="pSpec2">
+                  author: {comment.author}, date created:{" "}
+                  {comment.created_at.slice(0, 10)},{" "}
+                  {comment.created_at.slice(11, 16)}
                   <span className="spanVotes"> votes: {comment.votes}</span>
                 </p>
                 <p className="pSpec"> {comment.body}</p>
