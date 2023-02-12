@@ -1,0 +1,54 @@
+.body1 {
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.waviy {
+  position: relative;
+}
+.waviy span {
+  position: relative;
+  display: inline-block;
+  font-size: 40px;
+  color: #fff;
+  text-transform: uppercase;
+  animation: flip 2s infinite;
+}
+#load1 {
+  animation-delay: calc(0.2s * 1);
+}
+#load2 {
+  animation-delay: calc(0.2s * 2);
+}
+#load3 {
+  animation-delay: calc(0.2s * 3);
+}
+#load4 {
+  animation-delay: calc(0.2s * 4);
+}
+#load5 {
+  animation-delay: calc(0.2s * 5);
+}
+#load6 {
+  animation-delay: calc(0.2s * 6);
+}
+#load7 {
+  animation-delay: calc(0.2s * 7);
+}
+#load8 {
+  animation-delay: calc(0.2s * 8);
+}
+#load9 {
+  animation-delay: calc(0.2s * 9);
+}
+#load10 {
+  animation-delay: calc(0.2s * 10);
+}
+@keyframes flip {
+  0%,
+  80% {
+    transform: rotateY(360deg);
+  }
+}

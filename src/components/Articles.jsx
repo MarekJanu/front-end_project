@@ -2,6 +2,7 @@ import { getArticles, getUsers } from "./utils/api";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../App.css";
+import { Loading } from "./Loading";
 
 export const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -31,15 +32,18 @@ export const Articles = () => {
   const handleSorting = ({ target: { value } }) => {
     setSortValue(value);
   };
-
   const handleOrder = () => {
     if (orderOfSort === "DESC") setOrderOfSort("ASC");
     if (orderOfSort === "ASC") setOrderOfSort("DESC");
   };
+  const testTest = (arg) => {
+    const arrowSignObj = { ASC: "˄", DESC: "˅" };
+    return arrowSignObj[arg];
+  };
 
   if (error) return <h2>{error}</h2>;
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   } else {
     return (
       <>
@@ -50,7 +54,7 @@ export const Articles = () => {
           <option value="comment_count">comments</option>
         </select>
         <button className="randomButton" onClick={(e) => handleOrder(e)}>
-          ↕
+          {testTest(orderOfSort)}
         </button>
         <section className="listDisplay">
           {articles.map((article) => {
@@ -66,9 +70,9 @@ export const Articles = () => {
                     comments {article.comment_count}&nbsp;votes {article.votes}
                   </span>
                 </Link>
-                <p>
-                  <img src={newObj[article.author]} className="imgAvatarPg" />
-                  &nbsp; {article.author}
+                <p className="specialP">
+                  by {article.author}, published:{" "}
+                  {article.created_at.slice(0, 10)}
                 </p>
               </div>
             );
