@@ -2,6 +2,26 @@
   text-align: left;
 }
 
+.darkMode {
+  background-color: black;
+}
+.darkMode p {
+  color: white;
+}
+.darkMode h1 {
+  color: white;
+}
+.darkMode a {
+  color: white;
+}
+.darkMode h2 {
+  color: white;
+}
+
+.darkMode h4 {
+  color: white;
+}
+
 .navbar {
   background-color: #333;
   overflow: hidden;

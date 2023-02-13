@@ -5,12 +5,14 @@ import "./App.css";
 import { Articles } from "./components/Articles";
 import { SingleArticle } from "./components/SingleArticle";
 import { ErrorPage } from "./components/ErrorPage";
+import { useState } from "react";
 
 function App() {
+  const [mode, setMode] = useState("App");
   return (
-    <div className="App">
+    <div className={`${mode}`}>
       <Header />
-      <Nav />
+      <Nav mode={mode} setMode={setMode} />
       <Routes>
         <Route path="/" element={<Articles />}></Route>
         <Route path="/topics/:topic" element={<Articles />}></Route>
