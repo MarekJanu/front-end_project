@@ -47,12 +47,14 @@ export const Articles = () => {
   } else {
     return (
       <>
+        <span className="darkSpan"> sorting :&nbsp;</span>
         <select className="someSelect" onChange={(e) => handleSorting(e)}>
           <option disabled>sort by</option>
           <option value="created_at">date</option>
           <option value="votes">votes</option>
           <option value="comment_count">comments</option>
         </select>
+        &nbsp;
         <button className="randomButton" onClick={(e) => handleOrder(e)}>
           {testTest(orderOfSort)}
         </button>

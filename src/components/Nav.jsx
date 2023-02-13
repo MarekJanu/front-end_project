@@ -5,8 +5,8 @@ import { useState } from "react";
 
 export const Nav = ({ mode, setMode }) => {
   const [switchOnOff, setSwitch] = useState(true);
+  const themeMatrix = { false: "light", true: "dark" };
   const handleChange = (e) => {
-    // e.preventDefault();
     if (mode === "App") {
       setSwitch(false);
       setMode("darkMode");
@@ -25,7 +25,12 @@ export const Nav = ({ mode, setMode }) => {
         <Link to="/topics/football">football</Link>
         <Link to="/topics/cooking">cooking</Link>
       </section>
-      <Switch checked={switchOnOff} onChange={handleChange} />
+      <span className="darkSpan">
+        &nbsp;{"go "}
+        {themeMatrix[switchOnOff]}
+        <Switch checked={switchOnOff} onChange={handleChange} />
+        &nbsp;
+      </span>
     </>
   );
 };

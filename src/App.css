@@ -21,6 +21,18 @@
 .darkMode h4 {
   color: white;
 }
+.darkMode .someSelect {
+  color: white;
+  background-color: black;
+  border-color: black;
+}
+.darkMode .randomButton {
+  color: white;
+  background-color: black;
+}
+.darkMode .darkSpan {
+  color: white;
+}
 
 .navbar {
   background-color: #333;
