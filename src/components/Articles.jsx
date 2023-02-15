@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../App.css";
 import { Loading } from "./Loading";
+import { Alert } from "@mui/material";
 
 export const Articles = () => {
   const [articles, setArticles] = useState([]);

@@ -1,7 +1,9 @@
-Hello and welcome to my new fron-end project version of NC-News.
+## Intruduction
 
-It is avaliable online now:
+Hello and welcome to my new fron-end project of a news app.
+
+The app is available online under this link:
 
 https://main--marekfeproapp.netlify.app/
 
-More will come soon...
+This is
